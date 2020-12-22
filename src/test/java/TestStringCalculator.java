@@ -72,5 +72,9 @@ public class TestStringCalculator {
 	public void greaterWithOneOperand() {
 		Assert.assertEquals(test.Add("1001"),0);	
 	}
+	@Test
+	public void delimiterSetWithOperands() {
+		Assert.assertEquals(test.Add("//[***]\n1***2***3"),6);	
+	}
 
 }
