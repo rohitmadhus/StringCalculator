@@ -69,12 +69,36 @@ public class TestStringCalculator {
 		Assert.assertEquals(test.Add("//>\n1001"),0);	
 	}
 	@Test
+	public void greaterWithOneOperandWithDelimiterWithNoOperand() {
+		Assert.assertEquals(test.Add("//>\n"),0);	
+	}
+	@Test
 	public void greaterWithOneOperand() {
 		Assert.assertEquals(test.Add("1001"),0);	
 	}
 	@Test
+	public void delimiterSetWithSingleOperand() {
+		Assert.assertEquals(test.Add("//[***]\n1"),1);	
+	}
+
+	@Test
 	public void delimiterSetWithOperands() {
 		Assert.assertEquals(test.Add("//[***]\n1***2***3"),6);	
 	}
+	
+	@Test(expected = MyException.class)
+	public void delimiterSetWithNegativeOperands() {
+		test.Add("//[***]\n1***-2***3");
+	}
+	@Test
+	public void delimiterSetWithNoOperands() {
+		Assert.assertEquals(test.Add("//[***]\n"),0);	
+	}
+	@Test
+	public void delimiterSetWithNoOperandsAndNoNextLine() {
+		Assert.assertEquals(test.Add("//[***]"),0);	
+	}
+	
+
 
 }
