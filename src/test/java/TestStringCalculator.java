@@ -35,7 +35,7 @@ public class TestStringCalculator {
 	}
 	@Test
 	public void withDynamicDelimiterWithMultipleOperator() {
-		Assert.assertEquals(test.Add("//;\n1;2;3;4;5"),15);	
+		Assert.assertEquals(test.Add("//;\n1;2;3;4;5;1001"),15);	
 	}
 	@Test
 	public void withDefaultDelimiter() {
@@ -63,6 +63,14 @@ public class TestStringCalculator {
 	@Test(expected = MyException.class)
 	public void negativeMultipleOperandWithdelimiter() {
 		test.Add("//>\n1>2>-3>4>5");	
+	}
+	@Test
+	public void greaterWithOneOperandWithDelimiter() {
+		Assert.assertEquals(test.Add("//>\n1001"),0);	
+	}
+	@Test
+	public void greaterWithOneOperand() {
+		Assert.assertEquals(test.Add("1001"),0);	
 	}
 
 }

@@ -31,6 +31,9 @@ public class StringCalculator {
 			negtiveNumbers.add(Integer.parseInt(operands[i].trim()));
 			count++;
 			}
+			else if(Integer.parseInt(operands[i].trim()) > 1000) {
+				operands[i] = "0";
+			}
 			else {
 			sum = sum + Integer.parseInt(operands[i].trim());
 			}
