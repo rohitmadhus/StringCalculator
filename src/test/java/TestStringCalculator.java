@@ -98,6 +98,24 @@ public class TestStringCalculator {
 	public void delimiterSetWithNoOperandsAndNoNextLine() {
 		Assert.assertEquals(test.Add("//[***]"),0);	
 	}
+	@Test
+	public void multipleDelimiterWithMultipleOperands() {
+		Assert.assertEquals(test.Add("//[*][%]\n1*2%3"),6);	
+	}
+	@Test
+	public void multipleDelimiterDifferentSetsWithMultipleOperands() {
+		Assert.assertEquals(test.Add("//[****][%][$$$]\n1****2$$$3"),6);	
+	}
+	@Test(expected = MyException.class)
+	public void multipleDelimiterDifferentSetsWithMultipleOperandsNegativeValue() {
+		test.Add("//[****][%][$$$]\n1****-2$$$3");
+	}
+	@Test
+	public void multipleDelimiterDifferentSetsWithMultipleOperandsValueAbovethousand() {
+		Assert.assertEquals(test.Add("//[****][%][$$$]\n1002****2$$$3"),5);	
+	}
+	
+	
 	
 
 
