@@ -18,8 +18,7 @@ public class TestStringCalculator {
 	
 	@Test
 	public void oneOperand() {
-		Assert.assertEquals(test.Add("1"),1);
-		
+		Assert.assertEquals(test.Add("1"),1);	
 	}
 	@Test
 	public void twoOperand() {
@@ -28,9 +27,29 @@ public class TestStringCalculator {
 	}
 	@Test
 	public void multipleOperand() {
-		Assert.assertEquals(test.Add("1,2,3,4,5,6,7,8,9,10"),55);
-		
+		Assert.assertEquals(test.Add("1,2,3,4,5,6,7,8,9,10"),55);	
 	}
+	@Test
+	public void withDynamicDelimiter() {
+		Assert.assertEquals(test.Add("//;\n1"),1);	
+	}
+	@Test
+	public void withDynamicDelimiterWithMultipleOperator() {
+		Assert.assertEquals(test.Add("//;\n1;2;3;4;5"),15);	
+	}
+	@Test
+	public void withDefaultDelimiter() {
+		Assert.assertEquals(test.Add("1;2;3;4;5"),15);	
+	}
+	@Test
+	public void withDynamicDelimiterGreaterThan() {
+		Assert.assertEquals(test.Add("//>\n1>2>3>4>5"),15);	
+	}
+	@Test
+	public void withDynamicDelimitersingleOperand() {
+		Assert.assertEquals(test.Add("//>\n1"),1);	
+	}
+	
 	
 
 }
