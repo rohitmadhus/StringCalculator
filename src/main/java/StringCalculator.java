@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 
 public class StringCalculator {
 	
 	public int Add(String numbers) {
 		int sum = 0;
+		int count = 0;
+		ArrayList<Integer> negtiveNumbers = new ArrayList<Integer>();
 		String[] operands;
 		if(numbers.trim().length() == 0) {
 			return 0;
@@ -19,10 +22,25 @@ public class StringCalculator {
 		    operands = numbers.trim().split(";");
 		}
 		else {
-			return Integer.parseInt(numbers.trim());
-		}	
-		for(int i=0;i<operands.length;i++) {
+			operands = new String[] {numbers.trim()};
+		}
+		
+		try {
+		for(int i=0;i<operands.length;i++) {	
+			if(Integer.parseInt(operands[i].trim()) < 0) {
+			negtiveNumbers.add(Integer.parseInt(operands[i].trim()));
+			count++;
+			}
+			else {
 			sum = sum + Integer.parseInt(operands[i].trim());
+			}
+		}
+		if(count >= 1) {
+			throw new MyException("negatives not allowed" + negtiveNumbers);
+		}
+		}
+		catch(MyException e) {
+			System.out.println(e.getMessage()); 	
 		}
 		return sum;
 	}

@@ -50,6 +50,19 @@ public class TestStringCalculator {
 		Assert.assertEquals(test.Add("//>\n1"),1);	
 	}
 	
+	@Test(expected = MyException.class)
+	public void negativeSingleOperand() {
+		test.Add("-1");	
+	}
 	
+	@Test(expected = MyException.class)
+	public void negativeMultipleOperand() {
+		test.Add("5,-1,-8,9,7");	
+	}
+	
+	@Test(expected = MyException.class)
+	public void negativeMultipleOperandWithdelimiter() {
+		test.Add("//>\n1>2>-3>4>5");	
+	}
 
 }
