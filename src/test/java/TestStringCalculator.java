@@ -114,6 +114,21 @@ public class TestStringCalculator {
 	public void multipleDelimiterDifferentSetsWithMultipleOperandsValueAbovethousand() {
 		Assert.assertEquals(test.Add("//[****][%][$$$]\n1002****2$$$3"),5);	
 	}
+	@Test
+	public void multipleDelimiterDifferentSetsWithNoOperands() {
+		Assert.assertEquals(test.Add("//[****][%][$$$]\n"),0);	
+	}
+	
+	@Test
+	public void invalidFormat1() {
+		Assert.assertEquals(test.Add("//[****][%][$$$]1****3"),0);	
+	}
+	
+	@Test
+	public void invalidFormat2() {
+		Assert.assertEquals(test.Add("[****][%][$$$]1****3"),0);	
+	}
+
 	
 	
 	

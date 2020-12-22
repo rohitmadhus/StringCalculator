@@ -41,10 +41,13 @@ public class StringCalculator {
 		String[] operands;
 		if(numbers.trim().length() == 0 || !((int)numbers.trim().charAt(numbers.trim().length()-1) >= 48 && (int)numbers.trim().charAt(numbers.trim().length()-1) <= 57)) {
 			return 0;
-		}
+		}	
 		else if(numbers.length()>=2 && numbers.trim().subSequence(0,2).equals("//")) {
 			String delimiter;
 			int i = numbers.indexOf("\n");
+			if(i== -1) {
+				return 0;
+			}
 			if(numbers.charAt(2) == '[' && numbers.charAt(3) != '\\' && numbers.charAt(4) != 'n') {
 				delimiter = FindDelimiters(numbers);			
 			}
@@ -54,16 +57,23 @@ public class StringCalculator {
 			operands = numbers.trim().substring(i+1).split(delimiter);
 		    
 		}
-		else if(numbers.contains(",")) {
-		    operands = numbers.trim().split(",");
-		}
-		else if(numbers.contains(";")) {
-		    operands = numbers.trim().split(";");
-		}
 		else {
-			operands = new String[] {numbers.trim()};
-		}
+		if(((int)numbers.trim().charAt(0) >= 48 && (int)numbers.trim().charAt(0) <= 57) || (numbers.trim().charAt(0) == '-')) {
 
+		        if(numbers.contains(",")) {
+		           operands = numbers.trim().split(",");
+		         }
+		        else if(numbers.contains(";")) {
+		        operands = numbers.trim().split(";");
+		        }
+		        else {
+			    operands = new String[] {numbers.trim()};
+		       }
+		     }
+		else {
+			return 0;
+		}	
+		}
 		try {
 		for(int i=0;i<operands.length;i++) {	
 			if(Integer.parseInt(operands[i].trim()) < 0) {
